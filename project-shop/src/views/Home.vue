@@ -31,7 +31,9 @@ export default {
       this.modal = true
     },
     addCart(product) {
-      this.cart.push(product)
+      const item = this.cart.find(p => p.id === product.id)
+      if (item) item.quantity++
+      else this.cart.push({ ...product, quantity: 1 })
       this.modal = false
       this.toast("Ajouté au panier !")
 
